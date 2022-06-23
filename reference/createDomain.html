@@ -44,7 +44,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">createDomain</span><span class="op">(</span><span class="va">domain</span>, <span class="va">res</span>, <span class="va">proj</span>, <span class="va">outdir</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">createDomain</span><span class="op">(</span><span class="va">domain</span>, res <span class="op">=</span> <span class="fl">100</span>, <span class="va">proj</span>, <span class="va">outdir</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -54,15 +54,23 @@
 
 
 <dt>res</dt>
-<dd><p>Resolution, in project units, of the output template and mask rasters</p></dd>
+<dd><p>Resolution, in project units, of the output template and mask rasters. Defaults to 100.</p></dd>
 
 
 <dt>proj</dt>
-<dd><p>Projection (CRS) object for the template and mask rasters to be produced</p></dd>
+<dd><p>Projection (CRS) object for the template and mask rasters to be produced, as epsg string eg. "epsg:3308". If none is provided, will use projection of input domain.</p></dd>
 
 
 <dt>outdir</dt>
 <dd><p>Output directory to write the rasters</p></dd>
+
+
+<dt>quiet</dt>
+<dd><p>Write progress diagnostics (TRUE/FALSE)</p></dd>
+
+
+<dt>overwrite</dt>
+<dd><p>Overwrite files (TRUE/FALSE)</p></dd>
 
 </dl></div>
     <div id="value">
@@ -75,7 +83,7 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">createDomain</span><span class="op">(</span><span class="va">myVect</span>, <span class="fl">30</span>, <span class="st">"EPSG:3308"</span>,<span class="st">"./output"</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in paste0("Hello ", domain, res, proj, outdir, "!"):</span> object 'myVect' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in "sf" %in% class(domain):</span> object 'myVect' not found</span>
 </code></pre></div>
     </div>
   </div>
