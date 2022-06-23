@@ -10,7 +10,12 @@
 #' @return template
 #' @export
 #'
-#' @examples createDomain(myVect, 30, "EPSG:3308","./output")
+#' @examples
+#' \dontrun{
+#' library(terra)
+#' region <- vect("park.gpkg")
+#' createDomain(region, res=30, proj="EPSG:3308",outdir="./output",quiet=FALSE)
+#' }
 createDomain <- function(domain,res=100,proj,outdir,quiet=TRUE,overwrite=TRUE){
   # Work out if input is vect or sf, convert to appropriate
   if("sf" %in% class(domain)){

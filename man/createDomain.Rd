@@ -26,5 +26,9 @@ template
 Create template and region of interest (ROI) rasters in an output directory based on input vector ROI, resolution and projection.
 }
 \examples{
-createDomain(myVect, 30, "EPSG:3308","./output")
+\dontrun{
+library(terra)
+region <- vect("park.gpkg")
+createDomain(region, res=30, proj="EPSG:3308",outdir="./output",quiet=FALSE)
+}
 }
