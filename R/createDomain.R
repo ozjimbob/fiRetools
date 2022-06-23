@@ -19,64 +19,47 @@
 createDomain <- function(domain,res=100,proj,outdir,quiet=TRUE,overwrite=TRUE){
   # Work out if input is vect or sf, convert to appropriate
   if("sf" %in% class(domain)){
-    if(!quiet){
-      print("Found sf object, converting to SpatVector.")
-    }
-    domain <- vect(domain)
+    pq("Found sf object, converting to SpatVector.",quiet)
+    domain <- terra::vect(domain)
   }
 
   # Do we have a projection? If not get it from input vect:
   if(!is.null(proj)){
-    if(!quiet){
-      print("Projection provided, projecting input domain.")
-    }
-    domain <- project(domain,proj)
+    pq("Projection provided, projecting input domain.",quiet)
+    domain <- terra::project(domain,proj)
   }else{
-    if(!quiet){
-      print("No projection provided, using projection from input domain.")
-    }
+    pq("No projection provided, using projection from input domain.",quiet)
   }
 
   proj <- paste0("epsg:",crs(domain,describe=TRUE)$code)
-  if(!quiet){
-    print(paste0("Projection is: ",proj))
-  }
+  pq(paste0("Projection is: ",proj),quiet)
 
   # aggregate to single polygon
-  if(!quiet){
-    print("Aggregating domain polygons into single polygon.")
-  }
-  domain <- aggregate(domain)
+  pq("Aggregating domain polygons into single polygon.",quiet)
+  domain <- terra::aggregate(domain)
 
   # create raster
-  if(!quiet){
-    print("Creating template raster.")
-  }
-  template <- rast(ext(domain),res=res,crs=proj)
-  if(!quiet){
-    print(paste0("Raster extent: ",ext(template)))
-    print(paste0("Raster resolution: ",res(template)[1]," x ",res(template)[2]))
-    print(paste0("Raster size: ",ncol(template)," x ",nrow(template)))
-  }
+  pq("Creating template raster.",quiet)
+  template <- rast(terra::ext(domain),res=res,crs=proj)
+  pq(paste0("Raster extent: ",terra::ext(template)),quiet)
+  pq(paste0("Raster resolution: ",terra::res(template)[1]," x ",terra::res(template)[2]),quiet)
+  pq(paste0("Raster size: ",terra::ncol(template)," x ",terra::nrow(template)),quiet)
   values(template)=1
 
-  if(!quiet){
-    print("Masking template by domain.")
-  }
-  mask <- mask(template,domain)
+  pq("Masking template by domain.",quiet)
+  mask <- terra::mask(template,domain)
 
-  if(!quiet){
-    print("Writing template.")
-  }
-  writeRaster(template,paste0(outdir,"/template.tif"),overwrite=overwrite)
-  if(!quiet){
-    print("Writing mask")
-  }
-  writeRaster(mask,paste0(outdir,"/mask.tif"),overwrite=overwrite)
-  if(!quiet){
-    print("Writing vector ROI")
-  }
-  writeVector(domain,paste0(outdir,"/ROI.gpkg"),overwrite=overwrite)
 
-  return(message)
+  pq("Writing template.",quiet)
+
+  terra::writeRaster(template,paste0(outdir,"/template.tif"),overwrite=overwrite)
+  pq("Writing mask",quiet)
+  terra::writeRaster(mask,paste0(outdir,"/mask.tif"),overwrite=overwrite)
+  pq("Writing vector ROI",quiet)
+  terra::writeVector(domain,paste0(outdir,"/ROI.gpkg"),overwrite=overwrite)
+
+  out$template <- terra::rast(paste0(outdir,"/template.tif"))
+  out$mask <- terra::rast(paste0(outdir,"/mask.tif"))
+  out$ROI <- terra::vect(paste0(outdir,"/ROI.gpkg"))
+  return(out)
 }
