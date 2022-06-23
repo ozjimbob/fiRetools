@@ -2,9 +2,9 @@ Package: fiRetools
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Grant", "Williamson", , "grant.williamson@utas.edu.au", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-3469-7550"))
+Description: FireTools is a spatial processing system to produce maps, timeseries and landscape metric analysis of optimum vegetation fire intervals.  Input data comprises vector GIS files of vegetation class, fire history, and a look-up table with vegetation fire attributes (eg. maximum and minimum burn interval) and classifies vegetation into within threshold, vulnerable, over burnt, or long unburnt categories.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
