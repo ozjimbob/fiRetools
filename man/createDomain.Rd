@@ -4,16 +4,20 @@
 \alias{createDomain}
 \title{Create template and region of interest (ROI) rasters in an output directory based on input vector ROI, resolution and projection.}
 \usage{
-createDomain(domain, res, proj, outdir)
+createDomain(domain, res = 100, proj, outdir, quiet = TRUE, overwrite = TRUE)
 }
 \arguments{
 \item{domain}{SpatVect or SimpleFeatures object contianing the domain of the analysis.  If this contains multiple features, they will be aggregated.}
 
-\item{res}{Resolution, in project units, of the output template and mask rasters}
+\item{res}{Resolution, in project units, of the output template and mask rasters. Defaults to 100.}
 
-\item{proj}{Projection (CRS) object for the template and mask rasters to be produced}
+\item{proj}{Projection (CRS) object for the template and mask rasters to be produced, as epsg string eg. "epsg:3308". If none is provided, will use projection of input domain.}
 
 \item{outdir}{Output directory to write the rasters}
+
+\item{quiet}{Write progress diagnostics (TRUE/FALSE)}
+
+\item{overwrite}{Overwrite files (TRUE/FALSE)}
 }
 \value{
 template
