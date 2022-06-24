@@ -18,5 +18,5 @@ Evapotranspiration value
 Get Evapotranspiration value for given Temperature and Soil Dryness Index
 }
 \examples{
-get_et(15,220)
+get_ET(15,221)
 }
