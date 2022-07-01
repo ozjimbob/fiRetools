@@ -53,7 +53,7 @@ createDomain <- function(domain,res=100,proj=NULL,outdir,quiet=TRUE,overwrite=TR
   terra::values(template)=1
 
   pq("Masking template by domain.",quiet)
-  mask <- terra::mask(template,domain)
+  mask <- terra::mask(template,domain,touches=FALSE)
 
 
   pq("Writing template.",quiet)
