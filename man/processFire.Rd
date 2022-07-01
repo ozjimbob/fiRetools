@@ -9,7 +9,8 @@ processFire(
   fire_history,
   season_field,
   start_year = NULL,
-  end_year = NULL
+  end_year = NULL,
+  quiet = TRUE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ processFire(
 \item{start_year}{Optional, start year for history calculation. Years before this will be excluded.}
 
 \item{end_year}{Optional end year for history production. Years after this will be excluded. If this year is beyond the end year in the history, empty future projection rasters will be produced.}
+
+\item{quiet}{Print progress information}
 }
 \value{
 Status of processing.

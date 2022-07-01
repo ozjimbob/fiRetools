@@ -22,13 +22,13 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
 
 
   # Load ROI
-  ROI <- vect(paste0(outdir,"/ROI.gpkg"))
+  ROI <- terra::vect(paste0(outdir,"/ROI.gpkg"))
 
   # Load Mask
-  mask_raster <- rast(paste0(outdir,"/mask.tif"))
+  mask_raster <- terra::rast(paste0(outdir,"/mask.tif"))
 
   # Load Template
-  template_raster <- rast(paste0(outdir,"/template.tif"))
+  template_raster <- terra::rast(paste0(outdir,"/template.tif"))
 
   # Convert fire history to vect if it is sf
   if("sf" %in% class(fire_history)){
