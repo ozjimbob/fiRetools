@@ -42,7 +42,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">createDomain</span><span class="op">(</span><span class="va">domain</span>, res <span class="op">=</span> <span class="fl">100</span>, <span class="va">proj</span>, <span class="va">outdir</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">createDomain</span><span class="op">(</span></span>
+<span>  <span class="va">domain</span>,</span>
+<span>  res <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  proj <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">outdir</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -80,11 +87,24 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="st">"park.gpkg"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">createDomain</span><span class="op">(</span><span class="va">region</span>, res<span class="op">=</span><span class="fl">30</span>, proj<span class="op">=</span><span class="st">"EPSG:3308"</span>,outdir<span class="op">=</span><span class="st">"./output"</span>,quiet<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/terra/" class="external-link">terra</a></span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> terra 1.5.34</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"ROI"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ROI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="va">ROI</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">test</span> <span class="op">&lt;-</span> <span class="fu">createDomain</span><span class="op">(</span><span class="va">ROI</span>, res<span class="op">=</span><span class="fl">50</span>, outdir<span class="op">=</span><span class="st">"../test"</span>,quiet<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "No projection provided, using projection from input domain."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Projection is: epsg:28355"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Aggregating domain polygons into single polygon."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Creating template raster."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Raster extent: ext(522572.294629247, 524872.294629247, 5246758.06171584, 5249658.06171584)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Raster resolution: 50 x 50"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Raster size: 46 x 58"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Masking template by domain."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Writing template."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Writing mask"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Writing vector ROI"</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">mask</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="createDomain-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -96,7 +116,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>
