@@ -4,7 +4,14 @@
 \alias{createDomain}
 \title{Create template and region of interest (ROI) rasters in an output directory based on input vector ROI, resolution and projection.}
 \usage{
-createDomain(domain, res = 100, proj, outdir, quiet = TRUE, overwrite = TRUE)
+createDomain(
+  domain,
+  res = 100,
+  proj = NULL,
+  outdir,
+  quiet = TRUE,
+  overwrite = TRUE
+)
 }
 \arguments{
 \item{domain}{SpatVect or SimpleFeatures object contianing the domain of the analysis.  If this contains multiple features, they will be aggregated.}
@@ -26,9 +33,9 @@ template
 Create template and region of interest (ROI) rasters in an output directory based on input vector ROI, resolution and projection.
 }
 \examples{
-\dontrun{
 library(terra)
-region <- vect("park.gpkg")
-createDomain(region, res=30, proj="EPSG:3308",outdir="./output",quiet=FALSE)
-}
+data("ROI")
+ROI <- vect(ROI)
+test <- createDomain(ROI, res=50, outdir="../test",quiet=FALSE)
+plot(test$mask)
 }

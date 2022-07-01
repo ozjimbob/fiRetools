@@ -11,53 +11,60 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' library(terra)
-#' region <- vect("park.gpkg")
-#' createDomain(region, res=30, proj="EPSG:3308",outdir="./output",quiet=FALSE)
-#' }
-createDomain <- function(domain,res=100,proj,outdir,quiet=TRUE,overwrite=TRUE){
+#' data("ROI")
+#' ROI <- vect(ROI)
+#' test <- createDomain(ROI, res=50, outdir="../test",quiet=FALSE)
+#' plot(test$mask)
+createDomain <- function(domain,res=100,proj=NULL,outdir,quiet=TRUE,overwrite=TRUE){
+
+  # Create output directory
+  if(!dir.exists(outdir)){
+    dir.create(outdir)
+  }
+
   # Work out if input is vect or sf, convert to appropriate
   if("sf" %in% class(domain)){
-    fiRetools:::pq("Found sf object, converting to SpatVector.",quiet)
+    pq("Found sf object, converting to SpatVector.",quiet)
     domain <- terra::vect(domain)
   }
 
   # Do we have a projection? If not get it from input vect:
   if(!is.null(proj)){
-    fiRetools:::pq("Projection provided, projecting input domain.",quiet)
+    pq("Projection provided, projecting input domain.",quiet)
     domain <- terra::project(domain,proj)
   }else{
-    fiRetools:::pq("No projection provided, using projection from input domain.",quiet)
+    pq("No projection provided, using projection from input domain.",quiet)
   }
 
-  proj <- paste0("epsg:",crs(domain,describe=TRUE)$code)
-  fiRetools:::pq(paste0("Projection is: ",proj),quiet)
+  proj <- paste0("epsg:",terra::crs(domain,describe=TRUE)$code)
+  pq(paste0("Projection is: ",proj),quiet)
 
   # aggregate to single polygon
-  fiRetools:::pq("Aggregating domain polygons into single polygon.",quiet)
+  pq("Aggregating domain polygons into single polygon.",quiet)
   domain <- terra::aggregate(domain)
 
   # create raster
-  fiRetools:::pq("Creating template raster.",quiet)
-  template <- rast(terra::ext(domain),res=res,crs=proj)
-  fiRetools:::pq(paste0("Raster extent: ",terra::ext(template)),quiet)
-  fiRetools:::pq(paste0("Raster resolution: ",terra::res(template)[1]," x ",terra::res(template)[2]),quiet)
-  fiRetools:::pq(paste0("Raster size: ",terra::ncol(template)," x ",terra::nrow(template)),quiet)
-  values(template)=1
+  pq("Creating template raster.",quiet)
+  template <- terra::rast(terra::ext(domain),res=res,crs=proj)
+  pq(paste0("Raster extent: ",terra::ext(template)),quiet)
+  pq(paste0("Raster resolution: ",terra::res(template)[1]," x ",terra::res(template)[2]),quiet)
+  pq(paste0("Raster size: ",terra::ncol(template)," x ",terra::nrow(template)),quiet)
+  terra::values(template)=1
 
-  fiRetools:::pq("Masking template by domain.",quiet)
+  pq("Masking template by domain.",quiet)
   mask <- terra::mask(template,domain)
 
 
-  fiRetools:::pq("Writing template.",quiet)
+  pq("Writing template.",quiet)
 
   terra::writeRaster(template,paste0(outdir,"/template.tif"),overwrite=overwrite)
-  fiRetools:::pq("Writing mask",quiet)
+  pq("Writing mask",quiet)
   terra::writeRaster(mask,paste0(outdir,"/mask.tif"),overwrite=overwrite)
-  fiRetools:::pq("Writing vector ROI",quiet)
+  pq("Writing vector ROI",quiet)
   terra::writeVector(domain,paste0(outdir,"/ROI.gpkg"),overwrite=overwrite)
 
+  out <- list()
   out$template <- terra::rast(paste0(outdir,"/template.tif"))
   out$mask <- terra::rast(paste0(outdir,"/mask.tif"))
   out$ROI <- terra::vect(paste0(outdir,"/ROI.gpkg"))
