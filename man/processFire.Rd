@@ -34,6 +34,8 @@ Process input fire history vector data to produce yearly history rasters
 }
 \examples{
 \dontrun{
-processFire("output",fire_history=fire_data,season_file="Year")
+data("COH_Fire")
+fire_history <- vect(COH_Fire)
+processFire("output",fire_history=fire_data,season_field="Year")
 }
 }

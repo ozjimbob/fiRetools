@@ -12,7 +12,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' processFire("output",fire_history=fire_data,season_file="Year")
+#' data("COH_Fire")
+#' fire_history <- vect(COH_Fire)
+#' processFire("output",fire_history=fire_data,season_field="Year")
 #' }
 processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_year=NULL,quiet=TRUE){
   if(!file.exists(paste0(outdir,"/mask.tif"))){stop("Mask file missing in outdir.")}
@@ -64,7 +66,7 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
 
   # Rasterize each year
   for(this_year in year_list){
-    print(this_year)
+    pq(paste0("Rasterizing year: ",this_year),quiet)
     this_year_fh <- terra::subset(fire_history,fire_history$SEASON==this_year)
 
     # Check if no fires
@@ -75,13 +77,9 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
       next
     }
 
-    print("Set Value")
     this_year_fh$VALUE = 1
-    print("rasterize")
     out <- terra::rasterize(this_year_fh, template_raster,field="VALUE",background=0)
-    print("Mask")
     out <- out * mask_raster
-    print("Write")
     terra::writeRaster(out,paste0(outdir,"/fire_binary/fire_",this_year,".tif"),overwrite=TRUE)
   }
 
@@ -90,6 +88,7 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
 
   idx <- 0
   for(this_year in year_list){
+    pq(paste0("Calculating last year burnt, year: ",this_year),quiet)
     this_rast <- terra::rast(paste0(outdir,"/fire_binary/fire_",this_year,".tif"))
     this_rast <- this_rast * this_year
     if(idx > 0){
@@ -104,15 +103,31 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
   if(!dir.exists(paste0(outdir,"/fire_TSL"))){dir.create(paste0(outdir,"/fire_TSL"))}
 
   for(this_year in year_list){
+    pq(paste0("Calculating time since last, year: ",this_year),quiet)
     this_rast <- terra::rast(paste0(outdir,"/fire_LYB/LYB_",this_year,".tif"))
     terra::values(this_rast)[terra::values(this_rast)==0]<-NA
     this_rast <- this_year - this_rast
     terra::writeRaster(this_rast,paste0(outdir,"/fire_TSL/TSL_",this_year,".tif"),overwrite=TRUE)
   }
 
+  if(!dir.exists(paste0(outdir,"/fire_TB"))){dir.create(paste0(outdir,"/fire_TB"))}
+
   ### NEXT PROGRESSIVE TIMES BURNT
+  idx<-1
+  for(this_year in year_list){
+    pq(paste0("Calculating times burnt, year: ",this_year),quiet)
+    input_rast<-terra::rast(paste0(outdir,"/fire_binary/fire_",this_year,".tif"))
+    if(idx==1){
+      this_rast <- input_rast
+    }else{
+      this_rast <- this_rast + input_rast
+    }
+    idx<-idx+1
+    terra::writeRaster(this_rast,paste0(outdir,"/fire_TB/TB_",this_year,".tif"),overwrite=TRUE)
+  }
 
-
+  year_list <- dplyr::tibble(year=year_list)
+  readr::write_csv(year_list,paste0(outdir,"/year_list.csv"))
   return()
 
 }
