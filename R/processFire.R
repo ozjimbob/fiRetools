@@ -47,13 +47,13 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
   names(fire_history)[name_find] = "SEASON"
 
   # set start/end year
-  if(is.null(end_year)){
+  if(is.null(start_year)){
     start_year <- min(fire_history$SEASON)
   }
   if(is.null(end_year)){
     end_year <- max(fire_history$SEASON)
   }
-
+  if(end_year <= start_year){stop("End year less than start year, or not enough years.")}
   year_list <- start_year:end_year
 
   # project fire history to ROI
