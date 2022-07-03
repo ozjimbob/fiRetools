@@ -88,7 +88,9 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu">processFire</span><span class="op">(</span><span class="st">"output"</span>,fire_history<span class="op">=</span><span class="va">fire_data</span>,season_file<span class="op">=</span><span class="st">"Year"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"COH_Fire"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fire_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="va">COH_Fire</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">processFire</span><span class="op">(</span><span class="st">"output"</span>,fire_history<span class="op">=</span><span class="va">fire_data</span>,season_field<span class="op">=</span><span class="st">"Year"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
