@@ -17,11 +17,10 @@
 #' processFire("output",fire_history=fire_data,season_field="Year")
 #' }
 processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_year=NULL,quiet=TRUE){
+
   if(!file.exists(paste0(outdir,"/mask.tif"))){stop("Mask file missing in outdir.")}
   if(!file.exists(paste0(outdir,"/template.tif"))){stop("Template file missing in outdir.")}
   if(!file.exists(paste0(outdir,"/ROI.gpkg"))){stop("ROI vector file missing in outdir.")}
-
-
 
   # Load ROI
   ROI <- terra::vect(paste0(outdir,"/ROI.gpkg"))
@@ -44,14 +43,14 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
   if(length(name_find)==0){stop("Fieldname not found in fire history")}
 
   # Rename field
-  names(fire_history)[name_find] = "SEASON"
+  names(fire_history)[name_find] = "SEASON_ftr"
 
   # set start/end year
   if(is.null(start_year)){
-    start_year <- min(fire_history$SEASON)
+    start_year <- min(fire_history$SEASON_ftr)
   }
   if(is.null(end_year)){
-    end_year <- max(fire_history$SEASON)
+    end_year <- max(fire_history$SEASON_ftr)
   }
   if(end_year <= start_year){stop("End year less than start year, or not enough years.")}
   year_list <- start_year:end_year
