@@ -43,17 +43,18 @@ processVeg <- function(outdir,veg_polygon, veg_LUT, join_field, min_field="MIN",
 
   if(!dir.exists(paste0(outdir,"/veg"))){dir.create(paste0(outdir,"/veg"))}
 
-
+  pq("Processing veg code, max and min.",quiet)
   # if ID is numeric, direct rasterize, otherwise convert to factor and rasterize
   if(!is.numeric(veg_polygon[[join_field]][1])){
 
+    pq("Char join field found.",quiet)
     # Assuming LUT contains all classes, convert to factor
     veg_LUT[[join_field]] <- factor(veg_LUT[[join_field]])
 
     # Add numeric version of factor for raster creation
     veg_LUT$VC_NUM <- as.numeric(veg_LUT[[join_field]])
 
-    # Extract data framt from veg_polygon because vect object are weird to work on
+    # Extract data frame from veg_polygon because vect object are weird to work on
     vdf <- data.frame(veg_polygon)
 
     # Make polyghon veg field a factor, copy over attributes from LUT factor
@@ -65,32 +66,41 @@ processVeg <- function(outdir,veg_polygon, veg_LUT, join_field, min_field="MIN",
     rm(vdf)
 
     # Make ID raster, mask
+    pq("Rasterizing veg code.",quiet)
     vr <- terra::rasterize(veg_polygon, template_raster,field="VC_NUM",filename=paste0(outdir,"/veg/veg_code.tif"),overwrite=TRUE)
     vr <- vr * mask_raster
+    pq("Masking and writing veg code.",quiet)
     terra::writeRaster(vr,paste0(outdir,"/veg/veg_code.tif"),overwrite=TRUE)
 
     # Reclassify
     max_mat <- cbind(veg_LUT$VC_NUM,veg_LUT[[max_field]])
     min_mat <- cbind(veg_LUT$VC_NUM,veg_LUT[[min_field]])
 
+    pq("Rasterizing max.",quiet)
     cc_max <- terra::classify(vr,max_mat,othersNA=TRUE,filename=paste0(outdir,"/veg/veg_max.tif"),overwrite=TRUE)
+    pq("Rasterizing min.",quiet)
     cc_min <- terra::classify(vr,min_mat,othersNA=TRUE,filename=paste0(outdir,"/veg/veg_min.tif"),overwrite=TRUE)
 
   }else{
+    pq("Numeric join field found.",quiet)
+    pq("Rasterizing veg code.",quiet)
     # Numeric ID field, we can directly raterize and assume LUT uses numeric ID
     vr <- terra::rasterize(veg_polygon, template_raster,field=join_field,filename=paste0(outdir,"/veg/veg_code.tif"),overwrite=TRUE)
     vr <- vr * mask_raster
+    pq("Masking and writing veg code.",quiet)
     terra::writeRaster(vr,paste0(outdir,"/veg/veg_code.tif"),overwrite=TRUE)
 
     max_mat <- cbind(veg_LUT[[join_field]],veg_LUT[[max_field]])
-    min_mat <- cbind(veg_LUT[[join_field]],veg_LUT[[min_field]])
 
+    min_mat <- cbind(veg_LUT[[join_field]],veg_LUT[[min_field]])
+    pq("Rasterizing max.",quiet)
     cc_max <- terra::classify(vr,max_mat,othersNA=TRUE,filename=paste0(outdir,"/veg/veg_max.tif"),overwrite=TRUE)
+    pq("Rasterizing min.",quiet)
     cc_min <- terra::classify(vr,min_mat,othersNA=TRUE,filename=paste0(outdir,"/veg/veg_min.tif"),overwrite=TRUE)
   }
 
   if(!is.null(form_field)){
-
+    pq("Joining formation/group data.",quiet)
     # Find and set name of form field and standardize
     name_find <- which(names(veg_LUT)==form_field)
 
@@ -99,17 +109,24 @@ processVeg <- function(outdir,veg_polygon, veg_LUT, join_field, min_field="MIN",
     # Rename field
     names(veg_LUT)[name_find] = "FORM_FIELD_ftr"
 
+    if(!is.numeric(veg_polygon[[join_field]][1])){
     form_LUT <- tibble::tibble(VC_NUM = veg_LUT$VC_NUM,
                        FORM = veg_LUT$FORM_FIELD_ftr,
                        FORM_NUM = as.numeric(factor(veg_LUT$FORM_FIELD_ftr)))
-
+    }else{
+      form_LUT <- tibble::tibble(VC_NUM = veg_LUT[[join_field]],
+                                 FORM = veg_LUT$FORM_FIELD_ftr,
+                                 FORM_NUM = as.numeric(factor(veg_LUT$FORM_FIELD_ftr)))
+    }
 
 
     form_mat <- cbind(form_LUT$VC_NUM,form_LUT$FORM_NUM)
-
+    pq("Rasterizing formation",quiet)
     cc_form <- terra::classify(vr,form_mat,othersNA=TRUE,filename=paste0(outdir,"/veg/veg_form.tif"),overwrite=TRUE)
 
   }
+
+  pq("Writing veg/formation LUT.",quiet)
   form_LUT <- dplyr::left_join(form_LUT,veg_LUT)
   form_LUT$FORM_FIELD_ftr <- NULL
   readr::write_csv(form_LUT,paste0(outdir,"/veg/form_LUT.csv"))
