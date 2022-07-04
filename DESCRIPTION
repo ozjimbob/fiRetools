@@ -19,7 +19,8 @@ Imports:
     readr,
     scales,
     sf,
-    terra
+    terra,
+    tibble
 URL: https://ozjimbob.github.io/fiRetools/
 Depends: 
     R (>= 2.10)

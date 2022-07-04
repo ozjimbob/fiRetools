@@ -11,6 +11,7 @@ processVeg(
   join_field,
   min_field = "MIN",
   max_field = "MAX",
+  form_field = NULL,
   quiet = TRUE
 )
 }
@@ -27,6 +28,8 @@ processVeg(
 
 \item{max_field}{Field name in look-up table containing maximum interval in years}
 
+\item{form_field}{(Optional) Field name in look-up table containing the broad vegetation formation or group to summarise results within.}
+
 \item{quiet}{Verbose logging}
 }
 \value{
@@ -37,9 +40,10 @@ Process Vegetation polygon data to classified rasters
 }
 \examples{
 \dontrun{
+
 data("COH_Veg")
 COH_Veg <- vect(COH_Veg)
 data("COH_Veg_LUT")
-processVeg("output",veg_polygon=COH_Veg,veg_LUT=COH_Veg_LUT,join_field="VEGCODE")
+processVeg("output",veg_polygon=COH_Veg,veg_LUT=COH_Veg_LUT,join_field="VEGCODE",form_field="VEG_GROUP")
 }
 }

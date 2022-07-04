@@ -38,7 +38,7 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
   }
 
   # Find and set name of fire season
-  name_find <- which(season_field %in% names(fire_history))
+  name_find <- which(names(fire_history)==season_field)
 
   if(length(name_find)==0){stop("Fieldname not found in fire history")}
 
