@@ -9,7 +9,7 @@
 #' @param form_field (Optional) Field name in look-up table containing the broad vegetation formation or group to summarise results within.
 #' @param quiet Verbose logging
 #'
-#' @return Status of processing.
+#' @return Path to outdir for piping.
 #' @export
 #'
 #' @examples
@@ -18,7 +18,8 @@
 #' data("COH_Veg")
 #' COH_Veg <- vect(COH_Veg)
 #' data("COH_Veg_LUT")
-#' processVeg("output",veg_polygon=COH_Veg,veg_LUT=COH_Veg_LUT,join_field="VEGCODE",form_field="VEG_GROUP")
+#' processVeg("output",veg_polygon=COH_Veg,veg_LUT=COH_Veg_LUT,
+#'     join_field="VEGCODE",form_field="VEG_GROUP")
 #' }
 processVeg <- function(outdir,veg_polygon, veg_LUT, join_field, min_field="MIN",max_field="MAX",form_field=NULL,quiet=TRUE){
 
@@ -131,6 +132,6 @@ processVeg <- function(outdir,veg_polygon, veg_LUT, join_field, min_field="MIN",
   form_LUT$FORM_FIELD_ftr <- NULL
   readr::write_csv(form_LUT,paste0(outdir,"/veg/form_LUT.csv"))
 
-  return()
+  return(outdir)
 
 }

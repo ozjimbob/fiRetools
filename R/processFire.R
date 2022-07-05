@@ -7,7 +7,7 @@
 #' @param end_year Optional end year for history production. Years after this will be excluded. If this year is beyond the end year in the history, empty future projection rasters will be produced.
 #' @param quiet Print progress information
 #'
-#' @return Status of processing.
+#' @return Path to outdir for piping.
 #' @export
 #'
 #' @examples
@@ -127,6 +127,6 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
 
   year_list <- dplyr::tibble(year=year_list)
   readr::write_csv(year_list,paste0(outdir,"/year_list.csv"))
-  return()
+  return(outdir)
 
 }

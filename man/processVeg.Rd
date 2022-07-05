@@ -33,7 +33,7 @@ processVeg(
 \item{quiet}{Verbose logging}
 }
 \value{
-Status of processing.
+Path to outdir for piping.
 }
 \description{
 Process Vegetation polygon data to classified rasters
@@ -44,6 +44,7 @@ Process Vegetation polygon data to classified rasters
 data("COH_Veg")
 COH_Veg <- vect(COH_Veg)
 data("COH_Veg_LUT")
-processVeg("output",veg_polygon=COH_Veg,veg_LUT=COH_Veg_LUT,join_field="VEGCODE",form_field="VEG_GROUP")
+processVeg("output",veg_polygon=COH_Veg,veg_LUT=COH_Veg_LUT,
+    join_field="VEGCODE",form_field="VEG_GROUP")
 }
 }

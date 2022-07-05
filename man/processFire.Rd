@@ -27,7 +27,7 @@ processFire(
 \item{quiet}{Print progress information}
 }
 \value{
-Status of processing.
+Path to outdir for piping.
 }
 \description{
 Process input fire history vector data to produce yearly history rasters

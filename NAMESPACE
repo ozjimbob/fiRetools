@@ -2,6 +2,7 @@
 
 export(RS_to_MFI)
 export(calc_MFDI)
+export(calc_SDI)
 export(createDomain)
 export(get_ET)
 export(get_moor_FM)
