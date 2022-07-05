@@ -40,6 +40,12 @@
     <loc>https://ozjimbob.github.io/fiRetools/reference/createDomain.html</loc>
   </url>
   <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/dayintegral.html</loc>
+  </url>
+  <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/daylengths.html</loc>
+  </url>
+  <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/get_ET.html</loc>
   </url>
   <url>
@@ -55,6 +61,9 @@
     <loc>https://ozjimbob.github.io/fiRetools/reference/get_moor_RS.html</loc>
   </url>
   <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/hourwatt.html</loc>
+  </url>
+  <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/index.html</loc>
   </url>
   <url>
@@ -62,5 +71,8 @@
   </url>
   <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/processVeg.html</loc>
+  </url>
+  <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/sunaltitude.html</loc>
   </url>
 </urlset>
