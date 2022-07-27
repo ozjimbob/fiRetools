@@ -1,8 +1,8 @@
 pandoc: 2.14.2
-pkgdown: 2.0.5
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-07-05T23:57Z
+last_built: 2022-07-27T02:03Z
 urls:
   reference: https://ozjimbob.github.io/fiRetools/reference
   article: https://ozjimbob.github.io/fiRetools/articles

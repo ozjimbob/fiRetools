@@ -25,6 +25,9 @@
     <loc>https://ozjimbob.github.io/fiRetools/reference/COH_Veg_LUT.html</loc>
   </url>
   <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/FBW_calc.html</loc>
+  </url>
+  <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/ROI.html</loc>
   </url>
   <url>
@@ -37,6 +40,12 @@
     <loc>https://ozjimbob.github.io/fiRetools/reference/calc_SDI.html</loc>
   </url>
   <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/calc_view_factor.html</loc>
+  </url>
+  <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/compass_vectors.html</loc>
+  </url>
+  <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/createDomain.html</loc>
   </url>
   <url>
@@ -44,6 +53,9 @@
   </url>
   <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/daylengths.html</loc>
+  </url>
+  <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/determineMaxViewFactor.html</loc>
   </url>
   <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/get_ET.html</loc>
@@ -67,10 +79,19 @@
     <loc>https://ozjimbob.github.io/fiRetools/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/line_vector.html</loc>
+  </url>
+  <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/nw_vector.html</loc>
+  </url>
+  <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/processFire.html</loc>
   </url>
   <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/processVeg.html</loc>
+  </url>
+  <url>
+    <loc>https://ozjimbob.github.io/fiRetools/reference/sslp.html</loc>
   </url>
   <url>
     <loc>https://ozjimbob.github.io/fiRetools/reference/sunaltitude.html</loc>
