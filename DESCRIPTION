@@ -16,6 +16,8 @@ Imports:
     future.apply,
     glue,
     landscapemetrics,
+    purrr,
+    raster,
     readr,
     scales,
     sf,
