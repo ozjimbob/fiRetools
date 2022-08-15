@@ -11,7 +11,8 @@ FBW_calc(
   effective_slope,
   max_fire_run_distance,
   datdf,
-  dist = 0
+  id,
+  dist
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ FBW_calc(
 \item{max_fire_run_distance}{Maximum fire run distance in metres}
 
 \item{datdf}{Data frame with Vegetation_Community, SFFL (surface) and OFFL (overall) fine fuel loads, understory height in HGT, and Vegetation_Category ("Forest, Rainforest and Woodland", "Shrub, Scrub and Heath","Grassland" or "Tussock Moorland") to select fire model}
+
+\item{id}{Point ID number}
 
 \item{dist}{Distance field, unsure purpose}
 }

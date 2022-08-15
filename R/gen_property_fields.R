@@ -20,7 +20,9 @@ generate_property_fields <- function(locations,
                                      urb_types=c("Other natural environments", "Agricultural, urban and exotic vegetation"),
                                      urb_set="Agricultural, urban and exotic vegetation",
                                      id_field="RespondentID"){
-
+  VEG_GROUP<-""
+  angle <- ""
+  vlen <- ""
   proc_idx <- function(main_idx){
     this_adr <- locations[main_idx,]
     #print(main_idx)
@@ -63,7 +65,7 @@ generate_property_fields <- function(locations,
       # Which angle has the most distance vegetation?
       max_veg<-max(no_urb$vlen)
       # Get a list of directions to test, in case there are multiple maxima
-      which_max<-dplyr::filter(no_urb,vlen==max_veg)
+      which_max<-dplyr::filter(no_urb,round(vlen)==round(max_veg))
 
       # Try each angle
       dir_list = list()
@@ -131,5 +133,7 @@ generate_property_fields <- function(locations,
 
   out_list <- purrr::map_df(1:nrow(locations),proc_idx)
 
-
+  out_list$effective_slope <- abs(out_list$slope)
+  return(out_list)
 }
+

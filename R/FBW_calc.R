@@ -6,7 +6,9 @@
 #' @param effective_slope Slope in degrees
 #' @param max_fire_run_distance Maximum fire run distance in metres
 #' @param datdf Data frame with Vegetation_Community, SFFL (surface) and OFFL (overall) fine fuel loads, understory height in HGT, and Vegetation_Category ("Forest, Rainforest and Woodland", "Shrub, Scrub and Heath","Grassland" or "Tussock Moorland") to select fire model
+#' @param id Point ID number
 #' @param dist Distance field, unsure purpose
+#'
 #' @return Maximum fuel break width in m
 #' @export
 #'
@@ -21,13 +23,13 @@ FBW_calc<-function(fb_class,
                   effective_slope,
                   max_fire_run_distance,
                   datdf,
-                  dist=0){
+                  id,dist){
 
 
 
 
   # Constants and defaults
-
+print(id)
   vegetation_category = ""
   fuel_type = ""
 
@@ -250,6 +252,7 @@ FBW_calc<-function(fb_class,
     theFBW = round(d)
   }
   #plot(rec)
-  return(data.frame(FBW=theFBW,FL=fireline_intensity,Rd=rec[1]))
+  print(id)
+  return(data.frame(id=id,dist=dist,FBW=theFBW,FL=fireline_intensity,Rd=rec[1]))
 
 }
