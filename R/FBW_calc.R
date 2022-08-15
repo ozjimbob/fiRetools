@@ -29,7 +29,7 @@ FBW_calc<-function(fb_class,
 
 
   # Constants and defaults
-print(id)
+#print(id)
   vegetation_category = ""
   fuel_type = ""
 
@@ -252,7 +252,7 @@ print(id)
     theFBW = round(d)
   }
   #plot(rec)
-  print(id)
+  #print(id)
   return(data.frame(id=id,dist=dist,FBW=theFBW,FL=fireline_intensity,Rd=rec[1]))
 
 }
