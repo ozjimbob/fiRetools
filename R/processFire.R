@@ -44,6 +44,7 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
 
   # Rename field
   names(fire_history)[name_find] = "SEASON_ftr"
+  fire_history$SEASON_ftr = as.numeric(fire_history$SEASON_ftr)
 
   # set start/end year
   if(is.null(start_year)){
@@ -66,7 +67,7 @@ processFire <- function(outdir,fire_history,season_field,start_year=NULL,end_yea
   # Rasterize each year
   for(this_year in year_list){
     pq(paste0("Rasterizing year: ",this_year),quiet)
-    this_year_fh <- terra::subset(fire_history,fire_history$SEASON==this_year)
+    this_year_fh <- terra::subset(fire_history,fire_history$SEASON_ftr==this_year)
 
     # Check if no fires
     if(nrow(this_year_fh)==0){
