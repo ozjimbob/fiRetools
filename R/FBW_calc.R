@@ -1,6 +1,6 @@
 #' Fuel Break Width Calculator
 #'
-#' @param fb_class Fuel break class; string class1 = Managed fuel, class2 = Protective break only
+#' @param fb_class Fuel break class; string class1 = Managed fuel, class2 = Protective break only, class3 = high FFDI
 #' @param vegetation_community Vegetation community from the Vegetation_Community field of fuel load data frame
 #' @param slope_type Position of property; string upslope, downslope or none
 #' @param effective_slope Slope in degrees
@@ -70,10 +70,18 @@ FBW_calc<-function(fb_class,
     GFDI = 24
     V = 26
     Ta = 305
+  }
 
-  } else {
+  if(fb_class=="class2"){
     FFDI = 50
     GFDI = 70
+    V = 45
+    Ta = 308
+  }
+
+  if(fb_class=="class3"){
+    FFDI = 80
+    GFDI = 90
     V = 45
     Ta = 308
   }

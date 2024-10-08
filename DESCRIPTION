@@ -8,18 +8,12 @@ Description: FireTools is a spatial processing system to produce maps, timeserie
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports: 
-    cowplot,
     dplyr,
-    future,
-    future.apply,
-    glue,
-    landscapemetrics,
     purrr,
     raster,
     readr,
-    scales,
     sf,
     stats,
     terra,

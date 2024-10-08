@@ -16,7 +16,7 @@ FBW_calc(
 )
 }
 \arguments{
-\item{fb_class}{Fuel break class; string class1 = Managed fuel, class2 = Protective break only}
+\item{fb_class}{Fuel break class; string class1 = Managed fuel, class2 = Protective break only, class3 = high FFDI}
 
 \item{vegetation_community}{Vegetation community from the Vegetation_Community field of fuel load data frame}
 
