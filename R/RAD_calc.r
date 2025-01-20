@@ -64,7 +64,7 @@ RAD_calc<-function(FFDI = 24,
   Ta =Ta + 273.15
   RH =0.25; # Relative Humidity
   L = 0.0 # Path length
-
+site_slope =0
     # Set based on fire run
 
   if(max_fire_run_distance == "< 300m"){
