@@ -42,7 +42,7 @@ RAD_calc<-function(FFDI = 24,
   #print(id)
   RHF_THRESHOLD = 12.5 # Radiant Heat Flux Threshold
 
-  V = 0 # Average Wind Speed
+   # Average Wind Speed
 
   ros = 0.0 # Rate of Spread
   fireline_intensity = 0.0;
