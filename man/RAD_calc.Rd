@@ -47,7 +47,7 @@ RAD_calc(
 \item{vegetation_community}{Vegetation community from the Vegetation_Community field of fuel load data frame}
 }
 \value{
-Maximum fuel break width in m
+Radiant heat flux in kW/m2
 }
 \description{
 Radiant Heat Calculator
