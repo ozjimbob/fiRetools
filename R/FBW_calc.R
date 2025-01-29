@@ -86,6 +86,13 @@ FBW_calc<-function(fb_class,
     Ta = 308
   }
 
+  if(fb_class=="class4"){
+    FFDI = 125
+    GFDI = 125
+    V = 65
+    Ta = 308
+  }
+
   # Set based on fire run
 
   if(max_fire_run_distance == "< 300m"){
