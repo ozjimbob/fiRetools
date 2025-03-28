@@ -21,9 +21,10 @@ The ember distance model encapsulates a statistical relationship built on top of
 The *ffdi* function can be used to calcualte the forest fire danger index for given meteorological variables, comprising temperature, relative humidity, wind speed, and drought factor.
 
 ```{r setup}
-library(tidyverse)
+library(ggplot2)
 library(fiRetools)
 library(sf)
+library(dplyr)
 
 FFDI <- ffdi(Temperature=32, Humid=18,Wind=25, DF=9)
 print(FFDI)
