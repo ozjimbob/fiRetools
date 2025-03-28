@@ -2,6 +2,8 @@
 <url><loc>https://ozjimbob.github.io/fiRetools/404.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/LICENSE-text.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/LICENSE.html</loc></url>
+<url><loc>https://ozjimbob.github.io/fiRetools/articles/ember-distance.html</loc></url>
+<url><loc>https://ozjimbob.github.io/fiRetools/articles/index.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/authors.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/index.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/COH_DEM.html</loc></url>
@@ -24,6 +26,9 @@
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/dayintegral.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/daylengths.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/determineMaxViewFactor.html</loc></url>
+<url><loc>https://ozjimbob.github.io/fiRetools/reference/ember_dist.html</loc></url>
+<url><loc>https://ozjimbob.github.io/fiRetools/reference/ffdi.html</loc></url>
+<url><loc>https://ozjimbob.github.io/fiRetools/reference/forest_behav.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/generate_max_run.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/generate_property_fields.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/get_ET.html</loc></url>
@@ -37,6 +42,7 @@
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/nw_vector.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/processFire.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/processVeg.html</loc></url>
+<url><loc>https://ozjimbob.github.io/fiRetools/reference/shift_poly.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/slope_vector.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/sslp.html</loc></url>
 <url><loc>https://ozjimbob.github.io/fiRetools/reference/sunaltitude.html</loc></url>
