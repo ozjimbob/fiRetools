@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   ember-distance: ember-distance.html
-last_built: 2025-03-28T00:36Z
+last_built: 2025-03-31T23:27Z
 urls:
   reference: https://ozjimbob.github.io/fiRetools/reference
   article: https://ozjimbob.github.io/fiRetools/articles
