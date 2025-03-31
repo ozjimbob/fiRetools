@@ -8,7 +8,6 @@
 #' @param Wo Overall Fuel load (t/ha)
 #' @param HGT Understory height (m, for heathland, grassland or shrub, all others set to -1)
 #' @param fuel_type (string, Forest/Shrub/Grass/Moorland)
-#' @param vegetation_community Vegetation community from the Vegetation_Community field of fuel load data frame
 #' @param slope_type Position of property; string upslope, downslope or none
 #' @param effective_slope Slope in degrees
 #' @param max_fire_run_distance Maximum fire run distance in metres

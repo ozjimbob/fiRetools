@@ -9,7 +9,8 @@
 #' @export
 #' @examples
 #'
-#'  slope_vector(sf::st_as_sf(data.frame(x=526000,y=5248614),coords=c("x","y"),crs=28355),150,37,dem)
+#'  data("COH_DEM")
+#'  slope_vector(sf::st_as_sf(data.frame(x=526000,y=5248614),coords=c("x","y"),crs=28355),150,37,COH_DEM)
 
 slope_vector<-function(point,distance,angle,dem){
     v1 <- line_vector(point,angle,distance)

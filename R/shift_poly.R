@@ -14,8 +14,7 @@
 #' shift_poly(vegetation,50,135,6.5)
 #' }
 shift_poly <- function(poly,dis = 50,base_ang = 135, var_ang = 6.5){
-  require(sf)
-  #veg <- filter(veg,VEG_GROUP==type)
+
   base_ang <- 135
   var_ang <- 6.5
   dseq <- seq(10,dis,by=10)
@@ -24,9 +23,9 @@ shift_poly <- function(poly,dis = 50,base_ang = 135, var_ang = 6.5){
   out <- list()
   idx=1
   for(dd in seq_along(dseq)){
-   # print(dseq[dd])
+
     for(ang in aseq){
-      #print(ang)
+
       rang <- ang * pi/180
       vec <- c(sin(rang),cos(rang))
       vec <- vec * dseq[dd]
