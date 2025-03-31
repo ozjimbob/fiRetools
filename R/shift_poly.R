@@ -39,7 +39,7 @@ shift_poly <- function(poly,dis = 50,base_ang = 135, var_ang = 6.5){
     }
   }
 
-  out <- bind_rows(out)
-  out <- summarise(out)
+  out <- dplyr::bind_rows(out)
+  out <- dplyr::summarise(out)
   out
 }

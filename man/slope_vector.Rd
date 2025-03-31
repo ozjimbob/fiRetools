@@ -23,5 +23,6 @@ Calculate slope based on regression over a given distance and angle across a DEM
 }
 \examples{
 
- slope_vector(sf::st_as_sf(data.frame(x=526000,y=5248614),coords=c("x","y"),crs=28355),150,37,dem)
+ data("COH_DEM")
+ slope_vector(sf::st_as_sf(data.frame(x=526000,y=5248614),coords=c("x","y"),crs=28355),150,37,COH_DEM)
 }

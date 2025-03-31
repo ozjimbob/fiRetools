@@ -43,8 +43,6 @@ RAD_calc(
 \item{max_fire_run_distance}{Maximum fire run distance in metres}
 
 \item{dist}{Distance of house from fireline (m)}
-
-\item{vegetation_community}{Vegetation community from the Vegetation_Community field of fuel load data frame}
 }
 \value{
 Radiant heat flux in kW/m2

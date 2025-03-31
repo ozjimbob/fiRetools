@@ -74,14 +74,6 @@ site_slope =0
 
   VH = max(0,HGT)
 
-  #fuel_type = datdf$Vegetation_Category[datdf$Vegetation_Community == vegetation_community][1]
-
-  #print(paste0("veg com:",vegetation_community))
-  #print(paste0("fuel type:",fuel_type))
-  #print(paste0("Wf:",Wf))
-  #print(paste0("FFDI:",FFDI))
-  # Start of setback calculation
-
   n=0
   Rd=0
   if(slope_type!="downslope"){
