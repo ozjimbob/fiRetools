@@ -6,6 +6,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-3469-7550")),
     person("Amila", "Wickramasinghe", , "amila.wickramasinghe@utas.edu.au", role = c("ctb"),
            comment = c(ORCID = "0000-0002-0481-9166")))      
+Funder: Natural Hazards Research Australia T2-A5, NSW Bushfire and Natural Hazards Research Centre
 Description: FireTools is a spatial processing system to produce maps, timeseries and landscape metric analysis of optimum vegetation fire intervals.  Input data comprises vector GIS files of vegetation class, fire history, and a look-up table with vegetation fire attributes (eg. maximum and minimum burn interval) and classifies vegetation into within threshold, vulnerable, over burnt, or long unburnt categories.  This package also contains functions for fire weather, fire beahviour, radiant heat and ember transport models. 
 License: MIT + file LICENSE
 Encoding: UTF-8
